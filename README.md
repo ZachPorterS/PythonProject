@@ -1,2 +1,2 @@
 # PythonProject
-A simple project to help with class structures
+A simple project on sorting algorithms
