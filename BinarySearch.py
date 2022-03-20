@@ -1,5 +1,6 @@
 # A simple search algorithms in python
 import random
+from random import seed
 import time
 
 ''' Naive Search -- Scan an entire list and ask if a value is 
@@ -33,8 +34,21 @@ def binary_search(l, target, low=None, high=None):
     return binary_search(l, target, midpoint + 1, high)
 
 if __name__ == '__main__':
-  length = 10000
+  seed(1)
+  length = 100_000
+  target = random.randint(0, length)
+
   sorted_list = set()
   while len(sorted_list) < length:
     sorted_list.add(random.randint(-3 * length, 3 * length))
   sorted_list = sorted(list(sorted_list))
+
+  start = time.time()
+  naive_search(sorted_list, target)
+  end = time.time()
+  print("Naive Search Time: ", "{:.12f}".format((end - start) / length), " seconds.")
+  
+  start = time.time()
+  binary_search(sorted_list, target)
+  end = time.time()
+  print("Binary Search Time: ", "{:.12f}".format((end - start) / length), " seconds.")
